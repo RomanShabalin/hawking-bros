@@ -1,0 +1,111 @@
+openapi: 3.0.0
+info:
+    title: Adapter
+    description: Адаптер
+    version: 0.0.1
+tags:
+    - name: adapter
+      description: Адаптер
+paths:
+    /adapter/execute:
+        post:
+            tags:
+                - adapter
+            summary: Получить прогноз погоды
+            operationId: execute
+            requestBody:
+                description: Executing
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/MsgA'
+                required: true
+            responses:
+                '200':
+                    description: Успех
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/MsgB'
+                '400':
+                    description: Неверное значение lng
+                '404':
+                    description: Пустое значение в msg
+                '500':
+                    description: Ошибка сервера
+components:
+    schemas:
+        MsgA:
+            type: object
+            properties:
+                msg:
+                    type: string
+                    description: "Некое текстовое сообщение"
+                    example: "Привет!"
+                lng:
+                    type: string
+                    enum:
+                        - ru
+                        - en
+                        - es
+                    description: "Язык сообщения"
+                    example: "ru"
+                coordinates:
+                    properties:
+                        latitude:
+                            type: string
+                            description: "Широта"
+                            example: "54.35"
+                        longitude:
+                            type: string
+                            description: "Долгота"
+                            example: "52.52"
+        MsgB:
+            type: object
+            properties:
+                txt:
+                    type: string
+                    description: "Некое текстовое сообщение"
+                    example: "Привет!"
+                createdDt:
+                    type: string
+                    #format: date-time
+                    description: "Дата формирования сообщения"
+                    example: "2024-03-13T18:00:00Z"
+                currentTemp:
+                    type: string
+                    description: "Температура по Цельсию"
+                    example: "28"
+        OpenMeteoResponse:
+            type: object
+            properties:
+                latitude:
+                    type: number
+                longitude:
+                    type: number
+                generationtime_ms:
+                    type: number
+                utc_offset_seconds:
+                    type: integer
+                timezone:
+                    type: string
+                timezone_abbreviation:
+                    type: string
+                elevation:
+                    type: number
+                current_units:
+                    properties:
+                        time:
+                            type: string
+                        interval:
+                            type: string
+                        temperature_2m:
+                            type: string
+                current:
+                    properties:
+                        time:
+                            type: string
+                        interval:
+                            type: integer
+                        temperature_2m:
+                            type: number

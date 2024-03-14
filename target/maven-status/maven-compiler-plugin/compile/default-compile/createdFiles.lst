@@ -1,0 +1,10 @@
+io\swagger\model\OpenMeteoResponseCurrentUnits.class
+io\swagger\model\OpenMeteoResponse.class
+io\swagger\model\MsgA.class
+io\swagger\model\OpenMeteoResponseCurrent.class
+io\swagger\model\MsgA$LngEnum.class
+com\hawkingbros\controller\AdapterApiController.class
+io\swagger\model\MsgACoordinates.class
+com\hawkingbros\HawkingbrosApplication.class
+io\swagger\api\AdapterApi.class
+io\swagger\model\MsgB.class
